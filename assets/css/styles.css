@@ -1,0 +1,21 @@
+#success {
+    color: white;
+}
+
+
+.fas {
+    color: #d9534f;
+    font-size: 50px;
+}
+
+#result {
+    color: #d9534f;
+    font-size: 25px;
+}
+
+
+h5 {
+    color: white;
+    font-size: 15px;
+    font-weight: 200;
+}

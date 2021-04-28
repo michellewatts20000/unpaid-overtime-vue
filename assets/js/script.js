@@ -12,9 +12,11 @@ var app = new Vue({
         years: '',
         finish: '',
         start: '',
+        yeslunch: '',
+        nolunch: '',
         working_days: 230,
         total_days: 260,
-        working_hours: 7.5,
+        working_hours: 8,
         button_text: 'Submit',
         calculated: false,
         unpaid_overtime: '',
@@ -34,14 +36,6 @@ var app = new Vue({
 
     methods: {
 
-        // time: function () {
-
-
-
-
-
-        // },
-
         // returns unpaid overtime
         total_unpaid_overtime: function () {
 
@@ -49,13 +43,20 @@ var app = new Vue({
             newStart = this.start.split(':')
             newFinish = this.finish.split(':')
 
-            newTime = (newFinish[0] - newStart[0]) - 7.5
+            if (this.nolunch === "nolunch") {
+                this.working_hours = 7.5;
+            } else {
+                this.working_hours = 8;
+            }
+
+            newTime = (newFinish[0] - newStart[0]) - this.working_hours
 
 
             totalOvertime = newTime * 230
             salaryDay = this.salary / 260
-            salaryHour = salaryDay / 7.5
+            salaryHour = salaryDay / 8.0
             result = totalOvertime * salaryHour
+
 
             return Math.ceil(result)
         },
@@ -65,7 +66,13 @@ var app = new Vue({
             newStart = this.start.split(':')
             newFinish = this.finish.split(':')
 
-            newTime = (newFinish[0] - newStart[0]) - 7.5
+            if (this.nolunch === "nolunch") {
+                this.working_hours = 7.5;
+            } else {
+                this.working_hours = 8;
+            }
+
+            newTime = (newFinish[0] - newStart[0]) - this.working_hours
 
 
             totalOvertime = newTime * 230

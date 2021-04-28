@@ -58,6 +58,7 @@
 
 
 
+
                         <div class="row">
                             <div class="col">
 
@@ -166,6 +167,24 @@
                         <input type="text" class="form-control mb-3" name="salary" id="salary-gross" v-model="salary"
                             required />
 
+                        <label class="text-white">Do you usually take a lunch break<span>*</span>&nbsp;</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input v-model="yeslunch" class="form-check-input" type="radio" name="inlineRadioOptions"
+                                id="inlineRadio1" value="option1">
+                            <label class="text-white form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input v-model="nolunch" class="form-check-input" type="radio" name="inlineRadioOptions"
+                                id="inlineRadio2" value="nolunch">
+                            <label class="text-white form-check-label" for="inlineRadio2">No</label>
+                        </div>
+
+
+
+
+                        <br>
+
                         <button type="submit" id="custom_submit" value="Submit" class="btn btn-danger mt-3"
                             v-html="button_text"></button>
 
@@ -174,18 +193,28 @@
                         <div id="success"></div>
 
                     </form>
-                    <div v-if="calculated == true">
-                        <h3 class="text-white mt-3">You wern't paid:
-                            ${{ total_unpaid_overtime() }}
+                </div>
+                <div v-if="calculated == true">
+                    <div class="text-center col-md-12">
+                        <h3 class="text-center text-white mt-3">If you did this much overtime, every day, for one year
+                            you would
+                            have been underpaid:
+                            <span class="red">${{ total_unpaid_overtime() }}</span>
 
-                            for {{ total_hours_overtime() }} hours of overtime
-
-
+                            for <span class="red">{{ total_hours_overtime() }}</span> hours of overtime
                         </h3>
                     </div>
-                    <h5 class="mt-5">*Some disclaimer about this being an estimate based on your inputs</h5>
                 </div>
+
+                <div class="text-center col-md-12">
+                    <h5 class="text-center mt-5">*Some disclaimer about this being an estimate based on your inputs
+                    </h5>
+                </div>
+
+
+
             </div>
+
 
         </div>
 

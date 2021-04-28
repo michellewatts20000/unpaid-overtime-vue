@@ -2,6 +2,10 @@
     color: white;
 }
 
+.red {
+    color: #d9534f;
+
+}
 
 .fas {
     color: #d9534f;
@@ -18,4 +22,10 @@ h5 {
     color: white;
     font-size: 15px;
     font-weight: 200;
+}
+
+
+h3 {
+
+    line-height: 1.5;
 }

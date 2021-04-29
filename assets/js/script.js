@@ -20,11 +20,7 @@ var app = new Vue({
         button_text: 'Submit',
         calculated: false,
         unpaid_overtime: '',
-        dollar_options: {
-            prefix: '$',
-            numeral: true,
-            numeralThousandsGroupStyle: 'thousand'
-        }
+
     },
     watch: {
         total_unpaid_overtime: function () {
@@ -38,10 +34,36 @@ var app = new Vue({
 
         // returns unpaid overtime
         total_unpaid_overtime: function () {
+            newStart2 = this.start.split('')
+            newFinish2 = this.finish.split('')
 
 
             newStart = this.start.split(':')
             newFinish = this.finish.split(':')
+            console.log(newFinish2[5]);
+            console.log(newFinish2[4]);
+
+            if (newFinish2[5] == "p" || newFinish2[4] == "p") {
+                bestFinish = newFinish[0] + 12;
+
+            } else {
+                bestFinish = newFinish[0];
+                console.log(bestFinish);
+            }
+
+            if (newStart2[5] == "p" || newStart2[4] == "p") {
+                bestStart = newStart[0] + 12;
+
+            } else {
+                bestStart = newStart[0];
+                console.log(bestStart);
+            }
+
+
+
+
+            console.log(newStart2);
+            console.log(newFinish2);
 
             if (this.nolunch === "nolunch") {
                 this.working_hours = 7.5;
@@ -49,7 +71,7 @@ var app = new Vue({
                 this.working_hours = 8;
             }
 
-            newTime = (newFinish[0] - newStart[0]) - this.working_hours
+            newTime = (bestFinish - bestStart) - this.working_hours
 
 
             totalOvertime = newTime * 230
@@ -139,24 +161,24 @@ var app = new Vue({
 
 
         // makes sure input is a number
-        isNumber: function (evt) {
-            evt = (evt) ? evt : window.event;
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-                evt.preventDefault();;
-            } else {
-                return true;
-            }
-        },
+        // isNumber: function (evt) {
+        //     evt = (evt) ? evt : window.event;
+        //     var charCode = (evt.which) ? evt.which : evt.keyCode;
+        //     if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+        //         evt.preventDefault();;
+        //     } else {
+        //         return true;
+        //     }
+        // },
 
         // only shows the result if the years and salary have been entered
-        showHide: function () {
-            if (this.salary > 0 && this.years > 0) {
-                this.calculated = true;
-            } else {
-                this.calculated = false;
-            }
-        },
+        // showHide: function () {
+        //     if (this.salary > 0 && this.years > 0) {
+        //         this.calculated = true;
+        //     } else {
+        //         this.calculated = false;
+        //     }
+        // },
 
 
 

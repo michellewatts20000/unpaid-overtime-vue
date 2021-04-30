@@ -210,10 +210,11 @@
                         <h3 class="text-center text-white mt-3">If you did this much overtime, every day, for one year
                             you would
                             have been underpaid:
-                            <!-- {{ newStart() }} {{ newFinish() }} -->
-                            <span class="red">${{ total_unpaid_overtime(newFinish, newStart) }}</span>
+                            <br>
+                            <span class="red">${{ total_unpaid_overtime(newFinish, newStart, lunchOrNot) }}</span>
 
-                            for <span class="red">{{ total_hours_overtime(newFinish, newStart) }}</span> hours of
+                            for <span class="red">{{ total_hours_overtime(newFinish, newStart, lunchOrNot) }}</span>
+                            hours of
                             overtime
                         </h3>
 

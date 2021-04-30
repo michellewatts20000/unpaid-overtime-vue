@@ -32,6 +32,7 @@ var app = new Vue({
 
     methods: {
 
+        // turns string into a number, converts it to 24 hour time if it's past 12pm
         newStart: function () {
 
             newStart2 = this.start.split('')
@@ -44,7 +45,8 @@ var app = new Vue({
                 console.log(bestStart);
 
             } else {
-                bestStart = newStart[0];
+                var integer = parseInt(newStart[0], 10);
+                bestStart = integer;
                 console.log(bestStart);
                 return bestStart
             }
@@ -62,28 +64,44 @@ var app = new Vue({
                 console.log(bestFinish);
 
             } else {
-                bestFinish = newFinish[0];
+                var integer2 = parseInt(newFinish[0], 10);
+                bestFinish = integer2;
                 console.log(bestFinish);
                 return bestFinish
             }
         },
 
-
-        // returns unpaid overtime
-        total_unpaid_overtime: function (newFinish, newStart) {
-            newStart();
-            newFinish();
-
-            console.log(bestFinish);
-            console.log(bestStart);
-
+        lunchOrNot: function () {
             if (this.nolunch === "nolunch") {
                 this.working_hours = 7.5;
+                return this.working_hours
             } else {
                 this.working_hours = 8;
+                return this.working_hours
+            }
+        },
+
+
+        // returns unpaid overtime
+        total_unpaid_overtime: function (newStart, newFinish, lunchOrNot) {
+            newStart();
+            newFinish();
+            lunchOrNot();
+
+
+            if (bestStart > bestFinish) {
+                newTime = (bestStart - bestFinish) - this.working_hours
+
+                console.log(bestStart, bestFinish, this.working_hours);
+                console.log(newTime);
+
+            } else {
+                newTime = (bestFinish - bestStart) - this.working_hours
+                console.log(bestFinish, bestStart, this.working_hours);
+                console.log(newTime);
             }
 
-            newTime = (bestFinish - bestStart) - this.working_hours
+
 
 
             totalOvertime = newTime * 230
@@ -95,18 +113,24 @@ var app = new Vue({
             return Math.ceil(result)
         },
 
-        // returns unpaid overtime
-        total_hours_overtime: function (newFinish, newStart) {
+        // returns total hours of unpaid overtime
+        total_hours_overtime: function (newStart, newFinish, lunchOrNot) {
             newStart();
             newFinish();
+            lunchOrNot();
 
-            if (this.nolunch === "nolunch") {
-                this.working_hours = 7.5;
+            if (bestStart > bestFinish) {
+                newTime = (bestStart - bestFinish) - this.working_hours
+
+                console.log(bestStart, bestFinish, this.working_hours);
+                console.log(newTime);
+
             } else {
-                this.working_hours = 8;
+
+                newTime = (bestFinish - bestStart) - this.working_hours
+                console.log(newTime);
             }
 
-            newTime = (bestFinish - bestStart) - this.working_hours
 
 
             totalOvertime = newTime * 230

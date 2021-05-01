@@ -50,15 +50,8 @@
                     <form v-on:submit.prevent="submitForm">
 
                         <label class="text-white">Email Address <span>*</span>&nbsp;</label>
-                        <input type="text" class="form-control mb-3" name="email_address" id="email" v-model="email"
+                        <input type="text" placeholder="yourname@email.com" class="form-control mb-3" name="email_address" id="email" v-model="email"
                             required />
-
-                        <!-- <label class="text-white">Average hours worked in a day <span>*</span>&nbsp;</label>
-                        <input type="text" class="form-control mb-3" name="hours-over" id="hours-over" v-model="years"
-                            required /> -->
-
-
-
 
                         <div class="row">
                             <div class="col">
@@ -78,8 +71,8 @@
 
 
                         <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
-                        <cleave :options="dollar_options" type="text" placeholder="60,000" class="form-control mb-3" name="salary"  id="salary-gross"
-                            v-model.lazy="salary_unformatted" required ></cleave>
+                        <cleave :options="dollar_options" type="text" placeholder="60,000" class="form-control mb-3"
+                            name="salary" id="salary-gross" v-model.lazy="salary_unformatted" required></cleave>
 
                         <label class="text-white">Do you usually take a lunch break? <span>*</span>&nbsp;</label>
                         <br>

@@ -20,6 +20,11 @@ var app = new Vue({
         button_text: 'Submit',
         calculated: false,
         unpaid_overtime: '',
+        dollar_options: {
+            prefix: '$',
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        }
 
     },
     // watch: {
@@ -34,6 +39,7 @@ var app = new Vue({
 
         // turns string into a number, converts it to 24 hour time if it's past 12pm
         newStart: function () {
+            console.log(this.salary);
 
             newStart2 = this.start.split('')
             newStart = this.start.split(':')
@@ -87,10 +93,10 @@ var app = new Vue({
             newStart();
             newFinish();
             lunchOrNot();
-          
+
 
             if (bestStart > bestFinish) {
-                newTimeBegin = (bestStart - bestFinish)/2
+                newTimeBegin = (bestStart - bestFinish) / 2
                 newTime = newTimeBegin - this.working_hours;
                 console.log(bestStart, bestFinish, this.working_hours);
                 console.log(newTime);
@@ -102,14 +108,14 @@ var app = new Vue({
             }
 
             if (newTime < 0) {
-console.log(newTime);
+                console.log(newTime);
                 alert("this calculator only works with a minimum 7.5 hour day")
                 this.calculated = false;
                 return
             }
 
 
-          
+
             totalOvertime = newTime * 230
             salaryDay = this.salary / 260
             salaryHour = salaryDay / 8.0
@@ -122,10 +128,10 @@ console.log(newTime);
             newStart();
             newFinish();
             lunchOrNot();
-            
+
 
             if (bestStart > bestFinish) {
-                newTimeBegin = (bestStart - bestFinish)/2
+                newTimeBegin = (bestStart - bestFinish) / 2
                 newTime = newTimeBegin - this.working_hours;
                 console.log(bestStart, bestFinish, this.working_hours);
                 console.log(newTime);
@@ -136,7 +142,7 @@ console.log(newTime);
                 console.log(newTime);
             }
 
-         
+
 
             totalOvertime = newTime * 230
             return totalOvertime
@@ -144,7 +150,7 @@ console.log(newTime);
 
 
         newTimeCheck: function () {
-            
+
 
         },
 

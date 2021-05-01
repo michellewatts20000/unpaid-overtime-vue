@@ -64,119 +64,22 @@
                             <div class="col">
 
                                 <label class="text-white" for="start">Start Time: </label>
-                                <input v-model.lazy="start" class="form-control" id="start">
+                                <input placeholder="9:00am" v-model.lazy="start" class="form-control" id="start">
 
                             </div>
 
                             <div class="col">
                                 <label class="text-white" for="finish">Finish Time: </label>
-                                <input v-model.lazy="finish" class="form-control" id="finish">
+                                <input placeholder="5:00pm" v-model.lazy="finish" class="form-control" id="finish">
 
                             </div>
-                            <!-- <label class="text-white">Start Time <span>*</span>&nbsp;</label>
-                                <select class="custom-select" name="start" id="start" v-model="start" required>
-                                    <option value="">choose one</option>
-                                    <option value="12:00">12:00am
-                                    </option>
-                                    <option value="1:00">1:00am</option>
-                                    <option value="2:00">2:00am</option>
-                                    <option value="3:00">3:00am</option>
-                                    <option value="4:00">4:00am</option>
-                                    <option value="5:00">5:00am</option>
-                                    <option value="6:00">6:00am</option>
-                                    <option value="7:00">7:00am</option>
-                                    <option value="8:00">8:00am
-                                    </option>
-                                    <option value="9:00">9:00am</option>
-                                    <option value="10:00">10:00am</option>
-                                    <option value="11:00">11:00am</option>
-                                    <option value="12:00">12:00pm</option>
-                                    <option value="13:00">13:00pm
-                                    </option>
-                                    <option value="14:00">14:00pm</option>
-                                    <option value="15:00">15:00pm</option>
-                                    <option value="16:00">16:00pm</option>
-                                    <option value="17:00">17:00pm</option>
-                                    <option value="18:00">18:00pm</option>
-                                    <option value="19:00">
-                                        19:00pm
-                                    </option>
-                                    <option value="20:00">
-                                        20:00pm
-                                    </option>
-                                    <option value="21:00">
-                                        21:00pm
-                                    </option>
-                                    <option value="22:00">
-                                        22:00pm
-                                    </option>
-                                    <option value="23:00">
-                                        23:00pm
-                                    </option>
-                                    <option value="24:00">
-                                        24:00pm
-                                    </option>
-
-
-                                </select>
-
-
-                            </div>
-                            <div class="col">
-                                <label class="text-white">Finish Time <span>*</span>&nbsp;</label>
-                                <select class="custom-select" name="finish" id="finish" v-model="finish" required>
-                                    <option value="">choose one</option>
-                                    <option value="12:00am">12:00am
-                                    </option>
-                                    <option value="1:00">1:00am</option>
-                                    <option value="2:00">2:00am</option>
-                                    <option value="3:00">3:00am</option>
-                                    <option value="4:00">4:00am</option>
-                                    <option value="5:00">5:00am</option>
-                                    <option value="6:00">6:00am</option>
-                                    <option value="7:00">7:00am</option>
-                                    <option value="8:00">8:00am
-                                    </option>
-                                    <option value="9:00">9:00am</option>
-                                    <option value="10:00">10:00am</option>
-                                    <option value="11:00">11:00am</option>
-                                    <option value="12:00">12:00pm</option>
-                                    <option value="13:00">13:00pm
-                                    </option>
-                                    <option value="14:00">14:00pm</option>
-                                    <option value="15:00">15:00pm</option>
-                                    <option value="16:00">16:00pm</option>
-                                    <option value="17:00">17:00pm</option>
-                                    <option value="18:00">18:00pm</option>
-                                    <option value="19:00">
-                                        19:00pm
-                                    </option>
-                                    <option value="20:00">
-                                        20:00pm
-                                    </option>
-                                    <option value="21:00">
-                                        21:00pm
-                                    </option>
-                                    <option value="22:00">
-                                        22:00pm
-                                    </option>
-                                    <option value="23:00">
-                                        23:00pm
-                                    </option>
-                                    <option value="24:00">
-                                        24:00pm
-                                    </option>
-
-                                </select> -->
-
-
                         </div>
 
 
 
                         <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
-                        <cleave :options="dollar_options" type="text" class="form-control mb-3" name="salary" id="salary-gross"
-                            v-model.lazy="salary" required ></cleave>
+                        <cleave :options="dollar_options" type="text" placeholder="60,000" class="form-control mb-3" name="salary"  id="salary-gross"
+                            v-model.lazy="salary_unformatted" required ></cleave>
 
                         <label class="text-white">Do you usually take a lunch break? <span>*</span>&nbsp;</label>
                         <br>

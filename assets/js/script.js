@@ -8,7 +8,7 @@ var app = new Vue({
         email: '',
         occupation: '',
         industry: '',
-        salary: '',
+        salary_unformatted: '',
         years: '',
         finish: '',
         start: '',
@@ -39,8 +39,6 @@ var app = new Vue({
 
         // turns string into a number, converts it to 24 hour time if it's past 12pm
         newStart: function () {
-            console.log(this.salary);
-
             newStart2 = this.start.split('')
             newStart = this.start.split(':')
             console.log(newStart);
@@ -115,7 +113,7 @@ var app = new Vue({
             }
 
 
-
+            this.salary = (this.salary_unformatted.replace(/\D/g, ''));
             totalOvertime = newTime * 230
             salaryDay = this.salary / 260
             salaryHour = salaryDay / 8.0

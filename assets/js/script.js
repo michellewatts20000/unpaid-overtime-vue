@@ -87,11 +87,11 @@ var app = new Vue({
             newStart();
             newFinish();
             lunchOrNot();
-
+          
 
             if (bestStart > bestFinish) {
-                newTime = (bestStart - bestFinish) - this.working_hours
-
+                newTimeBegin = (bestStart - bestFinish)/2
+                newTime = newTimeBegin - this.working_hours;
                 console.log(bestStart, bestFinish, this.working_hours);
                 console.log(newTime);
 
@@ -101,15 +101,19 @@ var app = new Vue({
                 console.log(newTime);
             }
 
+            if (newTime < 0) {
+console.log(newTime);
+                alert("this calculator only works with a minimum 7.5 hour day")
+                this.calculated = false;
+                return
+            }
 
 
-
+          
             totalOvertime = newTime * 230
             salaryDay = this.salary / 260
             salaryHour = salaryDay / 8.0
             result = totalOvertime * salaryHour
-
-
             return Math.ceil(result)
         },
 
@@ -118,10 +122,11 @@ var app = new Vue({
             newStart();
             newFinish();
             lunchOrNot();
+            
 
             if (bestStart > bestFinish) {
-                newTime = (bestStart - bestFinish) - this.working_hours
-
+                newTimeBegin = (bestStart - bestFinish)/2
+                newTime = newTimeBegin - this.working_hours;
                 console.log(bestStart, bestFinish, this.working_hours);
                 console.log(newTime);
 
@@ -131,11 +136,16 @@ var app = new Vue({
                 console.log(newTime);
             }
 
-
+         
 
             totalOvertime = newTime * 230
-
             return totalOvertime
+        },
+
+
+        newTimeCheck: function () {
+            
+
         },
 
 

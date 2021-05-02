@@ -3,6 +3,7 @@ Vue.use(VueCleave);
 var app = new Vue({
     // the element to apply the code to
     el: '#app',
+    
     //define the variables
     data: {
         email: '',

@@ -58,22 +58,22 @@
                             <div class="col">
 
                                 <label class="text-white" for="start">Start Time: </label>
-                                <input placeholder="9:00am" v-model.lazy="start" class="form-control"  required>
+                                <input placeholder="9:00am" v-model.lazy="start" class="form-control" id="start" required>
 
                             </div>
 
                             <div class="col">
                                 <label class="text-white" for="finish">Finish Time: </label>
-                                <input placeholder="5:00pm" v-model.lazy="finish" class="form-control"  required>
+                                <input placeholder="5:00pm" v-model.lazy="finish" class="form-control" id="finish" required>
 
                             </div>
                         </div>
 
 
 
-                        <label for="salary" class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
+                        <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
                         <cleave :options="dollar_options" class="form-control mb-3"
-                        v-model.lazy="salary_unformatted" id="salary_unformatted" required></cleave>
+                        v-model.lazy="salary_unformatted" required></cleave>
 
 
                         <label class="text-white">Do you usually take a lunch break? <span>*</span>&nbsp;</label>

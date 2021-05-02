@@ -27,7 +27,10 @@ $(function () {
         "4:00am"
     ];
     $("#start").autocomplete({
-        source: availableTags
+        source: availableTags,
+        select: function(e) {
+            e.preventDefault();
+        }
     });
 });
 
@@ -59,7 +62,10 @@ $(function () {
         "4:00am"
     ];
     $("#finish").autocomplete({
-        source: availableTags
+        source: availableTags,
+        select: function(e) {
+            e.preventDefault();
+        }
     });
 });
 

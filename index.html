@@ -48,7 +48,7 @@
 
                     <h1 class="text-white mb-5">You have the right to switch off.</h1>
 
-                    <form v-on:submit.prevent="submitForm">
+                    <form id="calculator" v-on:submit.prevent="submitForm">
 
                         <label class="text-white">Email Address <span>*</span>&nbsp;</label>
                         <input type="email" placeholder="yourname@email.com" class="form-control mb-3"
@@ -56,13 +56,10 @@
 
                         <div class="row">
                             <div class="col">
-
                                 <label class="text-white" for="start">Start Time: </label>
                                 <input placeholder="9:00am" v-model.lazy="start" class="form-control" id="start"
                                     required>
-
                             </div>
-
                             <div class="col">
                                 <label class="text-white" for="finish">Finish Time: </label>
                                 <input placeholder="5:00pm" v-model.lazy="finish" class="form-control" id="finish"
@@ -70,9 +67,6 @@
 
                             </div>
                         </div>
-
-
-
                         <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
                         <cleave :options="dollar_options" class="form-control mb-3" v-model.lazy="salary_unformatted"
                             required></cleave>

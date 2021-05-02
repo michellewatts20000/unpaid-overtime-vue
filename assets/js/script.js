@@ -27,12 +27,12 @@ var app = new Vue({
         }
 
     },
-    // watch: {
-    //     total_unpaid_overtime: function () {
+    watch: {
+        total_unpaid_overtime: function () {
 
-    //     },
+        },
 
-    // },
+    },
 
 
     methods: {

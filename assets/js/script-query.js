@@ -30,6 +30,7 @@ $(function () {
         source: availableTags,
         select: function(e) {
             e.preventDefault();
+            $(this).val(''); return false;
         }
     });
 });
@@ -65,6 +66,7 @@ $(function () {
         source: availableTags,
         select: function(e) {
             e.preventDefault();
+            $(this).val(''); return false;
         }
     });
 });

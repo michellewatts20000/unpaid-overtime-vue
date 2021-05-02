@@ -28,14 +28,7 @@ var app = new Vue({
         }
 
     },
-    watch: {
-        total_unpaid_overtime: function () {
-            this.start = this.start
-            this.finish = this.finish
-        },
-
-    },
-
+  
 
     methods: {
 
@@ -203,35 +196,7 @@ var app = new Vue({
                 this.button_text = 'Submit';
             })
 
-
-
         },
-
-
-        // makes sure input is a number
-        // isNumber: function (evt) {
-        //     evt = (evt) ? evt : window.event;
-        //     var charCode = (evt.which) ? evt.which : evt.keyCode;
-        //     if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-        //         evt.preventDefault();;
-        //     } else {
-        //         return true;
-        //     }
-        // },
-
-        // only shows the result if the years and salary have been entered
-        // showHide: function () {
-        //     if (this.salary > 0 && this.years > 0) {
-        //         this.calculated = true;
-        //     } else {
-        //         this.calculated = false;
-        //     }
-        // },
-
-
-
-
-
 
     },
 

@@ -28,10 +28,7 @@ $(function () {
     ];
     $("#start").autocomplete({
         source: availableTags,
-        select: function(e) {
-            e.preventDefault();
-            $(this).val(''); return false;
-        }
+        
     });
 });
 
@@ -64,10 +61,7 @@ $(function () {
     ];
     $("#finish").autocomplete({
         source: availableTags,
-        select: function(e) {
-            e.preventDefault();
-            $(this).val(''); return false;
-        }
+       
     });
 });
 

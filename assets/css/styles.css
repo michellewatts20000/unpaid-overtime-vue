@@ -17,6 +17,10 @@
     font-size: 50px;
 }
 
+.danger {
+    color: #d9534f;
+}
+
 #result {
     color: #d9534f;
     font-size: 25px;

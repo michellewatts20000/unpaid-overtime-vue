@@ -6,5 +6,5 @@ Work how much unpaid overtime you are owed, by entering your average daily hous 
 ## Technologies used
 Vue, html, css, bootstrap, fontawesome, google fonts
 
-# Link
+## Link
 [link to the deployed app](https://michellewatts20000.github.io/unpaid-overtime-vue/)

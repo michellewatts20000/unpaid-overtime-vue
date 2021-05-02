@@ -28,12 +28,12 @@ var app = new Vue({
         }
 
     },
-    watch: {
-        total_unpaid_overtime: function () {
+    // watch: {
+    //     total_unpaid_overtime: function () {
 
-        },
+    //     },
 
-    },
+    // },
 
 
     methods: {
@@ -148,11 +148,7 @@ var app = new Vue({
         },
 
 
-        newTimeCheck: function () {
-
-
-        },
-
+       
 
         submitForm: function () {
 

@@ -34,3 +34,17 @@ h3 {
 
     line-height: 1.5;
 }
+
+
+@media screen and (max-width: 766px) {
+ 
+    h1 {
+        font-size: 30px;
+    }
+    
+    #footer {
+        margin-bottom: 15px;
+    }
+
+}
+  

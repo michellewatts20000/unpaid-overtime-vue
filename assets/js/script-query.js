@@ -66,7 +66,3 @@ $(function () {
 });
 
 
-$("#calculator").submit(function(event){
-    loadAjax();
-    event.preventDefault()
- })

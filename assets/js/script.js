@@ -15,6 +15,8 @@ var app = new Vue({
         start: '9:00am',
         yeslunch: '',
         nolunch: '',
+        fulltime: false,
+        parttime: false,
         working_days: 230,
         total_days: 260,
         working_hours: 8,
@@ -53,6 +55,7 @@ var app = new Vue({
             '4:00am'
         ]
     },
+
 
     methods: {
         // turns string into a number, converts it to 24 hour time if it's past 12pm

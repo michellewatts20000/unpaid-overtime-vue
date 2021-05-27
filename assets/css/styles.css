@@ -41,14 +41,13 @@ h3 {
 
 
 @media screen and (max-width: 766px) {
- 
+
     h1 {
         font-size: 30px;
     }
-    
+
     #footer {
         margin-bottom: 20px;
     }
 
 }
-  

@@ -3,7 +3,7 @@
 
 <head>
     <title>Unpaid overtime</title>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,74 +34,89 @@
 
 
 <body>
-    <section id="app" class="min-vh-100 bg-dark">
+    <section id="app" class="min-vh-100 h-100 bg-dark">
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center p-5">
-                    <!-- <i class="fas fa-hourglass-half mb-2"></i> -->
                     <i class="fas fa-toggle-on mb-2"></i>
 
                     <h1 class="text-white mb-5">You have the right to switch off.</h1>
-
-                    <form v-on:submit.prevent="submitForm">
-
-                        <label class="text-white">Email Address <span>*</span>&nbsp;</label>
-                        <input type="email" placeholder="yourname@email.com" class="form-control mb-3"
-                            name="email_address" id="email" v-model.lazy="email" required />
-
-
-
-                        <div class="row">
-                            <div class="col">
-                                <label class="text-white" for="start">Start Time: </label>
-                                <!-- <input placeholder="9:00am" v-model.lazy="start" class="form-control start" id="start"
-                                    required> -->
-
-                                <select v-model="start" class="form-control">
-                                    <option :value="this.selectedTemplate" disabled hidden>Start Time</option>
-                                    <option v-for="time_option in time_options" :key="time_option">
-                                        {{ time_option }}
-                                    </option>
-                                </select>
-
+                    <div class="row mb-5">
+                        <div class="col">
+                            <label class="text-white">Do you part-time or full-time? <span>*</span>&nbsp;</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input v-model="parttime" class="form-check-input" type="radio"
+                                    name="inlineRadioOptions" id="inlineRadio1" value="part-time">
+                                <label class="text-white form-check-label" for="inlineRadio1">Part-time</label>
                             </div>
-                            <div class="col">
-                                <label class="text-white" for="start">Finish Time: </label>
-                                <select v-model="finish" class="form-control">
-                                    <option :value="this.selectedTemplate" disabled hidden>Finish Time</option>
-                                    <option v-for="time_option in time_options" :key="time_option">
-                                        {{ time_option }}
-                                    </option>
-                                </select>
-
+                            <div class="form-check form-check-inline">
+                                <input v-model="fulltime" class="form-check-input" type="radio"
+                                    name="inlineRadioOptions" id="inlineRadio2" value="full-time">
+                                <label class="text-white form-check-label" for="inlineRadio2">Full-time</label>
                             </div>
+
                         </div>
-                        <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
-                        <cleave :options="dollar_options" class="form-control mb-3" v-model.lazy="salary_unformatted"
-                            required></cleave>
+                    </div>
 
-
-                        <label class="text-white">Do you usually take a lunch break? <span>*</span>&nbsp;</label>
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input v-model="yeslunch" class="form-check-input" type="radio" name="inlineRadioOptions"
-                                id="inlineRadio1" value="option1">
-                            <label class="text-white form-check-label" for="inlineRadio1">Yes</label>
+                    <div class="row">
+                        <div class="col">
+                            <form v-on:submit.prevent="submitForm">
+                                <label class="text-white">Email Address <span>*</span>&nbsp;</label>
+                                <input type="email" placeholder="yourname@email.com" class="form-control mb-3"
+                                    name="email_address" id="email" v-model.lazy="email" required />
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input v-model="nolunch" class="form-check-input" type="radio" name="inlineRadioOptions"
-                                id="inlineRadio2" value="nolunch">
-                            <label class="text-white form-check-label" for="inlineRadio2">No</label>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-white" for="start">Start Time: </label>
+                            <select v-model="start" class="form-control">
+                                <option :value="this.selectedTemplate" disabled hidden>Start Time</option>
+                                <option v-for="time_option in time_options" :key="time_option">
+                                    {{ time_option }}
+                                </option>
+                            </select>
+
                         </div>
+                        <div class="col">
+                            <label class="text-white" for="start">Finish Time: </label>
+                            <select v-model="finish" class="form-control">
+                                <option :value="this.selectedTemplate" disabled hidden>Finish Time</option>
+                                <option v-for="time_option in time_options" :key="time_option">
+                                    {{ time_option }}
+                                </option>
+                            </select>
 
-                        <br>
+                        </div>
+                    </div>
+                    <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
+                    <cleave :options="dollar_options" class="form-control mb-3" v-model.lazy="salary_unformatted"
+                        required></cleave>
 
-                        <button type="submit" id="custom_submit" value="Submit" class="btn btn-danger mt-3"
-                            v-html="button_text"></button>
+
+                    <label class="text-white">Do you usually take a lunch break? <span>*</span>&nbsp;</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input v-model="yeslunch" class="form-check-input" type="radio" name="inlineRadioOptions"
+                            id="inlineRadio1" value="option1">
+                        <label class="text-white form-check-label" for="inlineRadio1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input v-model="nolunch" class="form-check-input" type="radio" name="inlineRadioOptions"
+                            id="inlineRadio2" value="nolunch">
+                        <label class="text-white form-check-label" for="inlineRadio2">No</label>
+                    </div>
+
+                    <br>
+
+                    <button type="submit" id="custom_submit" value="Submit" class="btn btn-danger mt-3"
+                        v-html="button_text"></button>
 
 
-                        <div class="mt-3" id="result"></div>
-                        <div id="success"></div>
+                    <div class="mt-3" id="result"></div>
+                    <div id="success"></div>
 
                     </form>
                 </div>
@@ -139,8 +154,6 @@
 
 
     <script src="./assets/js/script.js"></script>
-    <!-- <script src="./assets/js/script-query.js"></script> -->
-
 
 </body>
 

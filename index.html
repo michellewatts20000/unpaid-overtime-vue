@@ -92,6 +92,9 @@
 
                             <label class="text-white">Do you usually take a lunch break? <span>*</span>&nbsp;</label>
                             <br>
+
+
+
                             <div class="form-check form-check-inline">
                                 <input v-model="yeslunch" class="form-check-input" type="radio"
                                     name="inlineRadioOptions" id="inlineRadio1" value="option1">
@@ -104,6 +107,28 @@
                             </div>
 
                             <br>
+                            <label class="text-white mt-3">How many minutes on average do you spend each day outside of
+                                work messaging, emailing and answering
+                                phone
+                                calls? &nbsp;</label>
+                            <div class="toggle2">
+                                <input v-model="fifteenmin" type="radio" name="sizeBy2" value="weight2"
+                                    id="sizeWeight2" />
+                                <label for="sizeWeight2">15</label>
+
+                                <input v-model="thirtymin" type="radio" name="sizeBy2" value="dimensions2"
+                                    id="sizeDimensions2" />
+                                <label for="sizeDimensions2">30</label>
+
+                                <input v-model="fortyfivemin" type="radio" name="sizeBy2" value="dimensions2"
+                                    id="sizeDimensions3" />
+                                <label for="sizeDimensions3">45</label>
+
+                                <input v-model="sixtymin" type="radio" name="sizeBy2" value="dimensions2"
+                                    id="sizeWeight3" />
+                                <label for="sizeWeight3">60+</label>
+                            </div>
+
 
                             <button type="submit" id="custom_submit" value="Submit" class="btn btn-danger mt-3"
                                 v-html="button_text"></button>

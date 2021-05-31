@@ -184,9 +184,13 @@
                                 you would
                                 have been underpaid:
                                 <br>
-                                <span class="red">${{ total_unpaid_overtime(newFinish, newStart, lunchOrNot) }}</span>
 
-                                for <span class="red">{{ total_hours_overtime(newFinish, newStart, lunchOrNot) }}</span>
+                                {{ startTime() }} {{ finishTime() }}
+                                <!-- <span
+                                    class="red">${{ total_unpaid_overtime(newFinish, newStart, lunchOrNot, startTime, finishTime) }}</span> -->
+
+                                <!-- for <span
+                                    class="red">{{ total_hours_overtime(startTime, newFinish, newStart, lunchOrNot, startTime, finishTime) }}</span> -->
                                 hours of
                                 overtime
                             </h3>
@@ -211,7 +215,7 @@
 
 
 
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script2.js"></script>
 
 
 

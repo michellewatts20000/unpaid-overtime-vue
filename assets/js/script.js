@@ -11,8 +11,8 @@ var app = new Vue({
         industry: '',
         salary_unformatted: '',
         years: '',
-        finish: '5:00pm',
         start: '9:00am',
+        finish: '5:00pm',
         fifteenmin: '15',
         thirtymin: '30',
         fortyfivemin: '45',
@@ -84,22 +84,21 @@ var app = new Vue({
         ]
     },
 
-
     methods: {
         // turns string into a number, converts it to 24 hour time if it's past 12pm
         newStart: function () {
             newStart2 = this.start.split('');
             newStart = this.start.split(':');
-            console.log(newStart);
+            console.log("newStart", newStart);
 
             if (newStart2[5] == 'p' || newStart2[4] == 'p') {
                 var integer = parseInt(newStart[0], 10);
                 bestStart = integer + 12;
-                console.log(bestStart);
+                console.log("bestStart", bestStart);
             } else {
                 var integer = parseInt(newStart[0], 10);
                 bestStart = integer;
-                console.log(bestStart);
+                console.log("bestStart", bestStart);
                 return bestStart;
             }
         },
@@ -107,16 +106,16 @@ var app = new Vue({
         newFinish: function () {
             newFinish2 = this.finish.split('');
             newFinish = this.finish.split(':');
-            console.log(newFinish);
+            console.log("newFinish", newFinish);
 
             if (newFinish2[5] == 'p' || newFinish2[4] == 'p') {
                 var integer2 = parseInt(newFinish[0], 10);
                 bestFinish = integer2 + 12;
-                console.log(bestFinish);
+                console.log("bestFinish", bestFinish);
             } else {
                 var integer2 = parseInt(newFinish[0], 10);
                 bestFinish = integer2;
-                console.log(bestFinish);
+                console.log("bestFinish", bestFinish);
                 return bestFinish;
             }
         },

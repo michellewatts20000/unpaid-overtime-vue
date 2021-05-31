@@ -41,9 +41,7 @@ h3 {
 }
 
 
-body:not(:-moz-handler-blocked) fieldset {
-    display: table-cell;
-}
+
 
 /* TOGGLE STYLING */
 .toggle {
@@ -96,34 +94,6 @@ body:not(:-moz-handler-blocked) fieldset {
     border-color: #d9534f;
     z-index: 1;
 }
-
-/* .toggle input:focus+label {
-    outline: dotted 1px #ccc;
-    outline-offset: 0.45rem;
-} */
-
-/* 
-@media (max-width: 800px) {
-    .toggle input+label {
-        padding: 0.75rem 0.25rem;
-        flex: 0 0 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
- */
-
-
-/* @media (max-width: 800px) {
-    .status span:first-of-type {
-        display: none;
-    }
-
-    .status span:last-of-type {
-        display: inline;
-    }
-} */
 
 
 @media screen and (max-width: 766px) {

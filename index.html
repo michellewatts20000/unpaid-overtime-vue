@@ -41,22 +41,22 @@
                         <div class="col">
                             <label class="text-white">Do you part-time or full-time? <span>*</span>&nbsp;</label>
                             <br>
-                            <div class="form-check form-check-inline">
-                                <input v-model="fulltime" @click="fulltime = true, parttime = false"
-                                    class="form-check-input btn btn-primary" type="radio" name="inlineRadioOptions"
-                                    id="fulltime" value="fulltime">
-                                <label class="text-white form-check-label btn-check"
-                                    for="inlineRadio2">Full-time</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input v-model="parttime" @click="parttime = true, fulltime = false"
-                                    class="form-check-input btn btn-primary" type="radio" name="inlineRadioOptions"
-                                    id="parttime" value="parttime">
-                                <label class="text-white form-check-label btn-check"
-                                    for="inlineRadio1">Part-time</label>
-                            </div>
+                            <fieldset>
+                                <div class="toggle">
+                                    <input v-model="fulltime" @click="fulltime = true, parttime = false" type="radio"
+                                        name="sizeBy" value="weight" id="sizeWeight" checked="checked" />
+                                    <label for="sizeWeight">Full-time</label>
+                                    <input v-model="parttime" @click="parttime = true, fulltime = false" type="radio"
+                                        name="sizeBy" value="dimensions" id="sizeDimensions" />
+                                    <label for="sizeDimensions">Part-time</label>
+                                </div>
+                            </fieldset>
+
                         </div>
                     </div>
+
+
+
                     <div v-if="fulltime">
                         <div class="row">
                             <div class="col">

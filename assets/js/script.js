@@ -180,7 +180,7 @@ var app = new Vue({
                     }
                 },
 
-                add_tags: ['C: Switch Off', 'A: Calculator']
+                add_tags: ['C: Unpaid Overtime', 'A: Calculator']
             };
 
             axios

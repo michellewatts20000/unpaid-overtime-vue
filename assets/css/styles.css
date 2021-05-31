@@ -97,11 +97,12 @@ body:not(:-moz-handler-blocked) fieldset {
     z-index: 1;
 }
 
-.toggle input:focus+label {
+/* .toggle input:focus+label {
     outline: dotted 1px #ccc;
     outline-offset: 0.45rem;
-}
+} */
 
+/* 
 @media (max-width: 800px) {
     .toggle input+label {
         padding: 0.75rem 0.25rem;
@@ -111,28 +112,10 @@ body:not(:-moz-handler-blocked) fieldset {
         align-items: center;
     }
 }
+ */
 
-/* STYLING FOR THE STATUS HELPER TEXT FOR THE DEMO */
-.status {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 400;
-}
 
-.status span {
-    font-weight: 600;
-    color: #b6985a;
-}
-
-.status span:first-of-type {
-    display: inline;
-}
-
-.status span:last-of-type {
-    display: none;
-}
-
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
     .status span:first-of-type {
         display: none;
     }
@@ -140,7 +123,7 @@ body:not(:-moz-handler-blocked) fieldset {
     .status span:last-of-type {
         display: inline;
     }
-}
+} */
 
 
 @media screen and (max-width: 766px) {

@@ -13,17 +13,17 @@ var app = new Vue({
         years: '',
         start: '9:00am',
         finish: '5:00pm',
-        fifteenmin: '15',
-        thirtymin: '30',
-        fortyfivemin: '45',
-        sixtymin: '60',
+        fifteenmin: '',
+        thirtymin: '',
+        fortyfivemin: '',
+        sixtymin: '',
         yeslunch: '',
         nolunch: '',
         fulltime: false,
         parttime: false,
         working_days: 230,
         total_days: 260,
-        working_hours: 8,
+        working_hours: 7.6,
         button_text: 'Submit',
         calculated: false,
         unpaid_overtime: '',
@@ -85,61 +85,157 @@ var app = new Vue({
     },
 
     methods: {
-        // turns string into a number, converts it to 24 hour time if it's past 12pm
+
+
+        logVariables: function () {
+            console.log(this.fifteenmin)
+            console.log(this.thirtymin)
+            console.log(this.fortyfivemin)
+            console.log(this.sixtymin)
+
+        },
+        // turns start time into a decimal, converts it to 24 hour time if it's past 12pm
         startTime: function () {
             var arr = this.start.split(':');
-            var dec = parseInt((arr[1] / 6) * 10, 10);
-            var startTime = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
-            console.log("startTime", startTime);
-            return startTime
+            var arr2 = arr[1].split('')
+            if (arr2[2] == 'p') {
+                var arr3 = arr2[0] * 10
+                let dec = parseInt((arr3 / 6) * 10, 10);
+                let startTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec) + 12;
+                console.log(startTimeResult)
+                return startTimeResult
+            } else {
+                var arr3 = arr2[0] * 10
+                let dec = parseInt((arr3 / 6) * 10, 10);
+                let startTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
+                console.log(startTimeResult)
+                return startTimeResult
+            }
         },
 
+        // turns finish time into a decimal, converts it to 24 hour time if it's past 12pm
         finishTime: function () {
             var arr = this.finish.split(':');
-            var dec = parseInt((arr[1] / 6) * 10, 10);
-            var finishTime = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
-            console.log("finishTime", finishTime);
-            return finishTime
+            var arr2 = arr[1].split('')
+            if (arr2[2] == 'p') {
+                var arr3 = arr2[0] * 10
+                let dec = parseInt((arr3 / 6) * 10, 10);
+                let finishTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec) + 12;
+                console.log(finishTimeResult)
+                return finishTimeResult
+            } else {
+                var arr3 = arr2[0] * 10
+                let dec = parseInt((arr3 / 6) * 10, 10);
+                let finishTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
+                console.log(finishTimeResult)
+                return finishTimeResult
+            }
         },
 
+        // did they check the lunch break radio and what to do with that
+        lunchOrNot: function () {
+            if (this.nolunch === 'nolunch') {
+                this.working_hours = 7.6;
+                console.log('working hours no lunch checked', this.working_hours)
+                return this.working_hours;
+            } else {
+                this.working_hours = 8;
+                console.log('working hours lunch checked', this.working_hours)
+                return this.working_hours;
+            }
+        },
+
+
+        // returns total hours of unpaid overtime
+        // total_hours_overtime: function (startTime, finishTime, lunchOrNot) {
+        //     startTime();
+        //     finishTime();
+        //     lunchOrNot();
+
+        //     let unpaid = this.working_hours - (finishTimeResult - startTimeResult)
+        //     console.log(unpaid)
+        //     totalOvertime = unpaid * 230;
+        //     return totalOvertime;
+        // },
+
+        // unpaidOvertime: function (startTime, finishTime, lunchOrNot) {
+
+        //     startTime();
+        //     finishTime();
+        //     lunchOrNot();
+
+        //     var unpaid_overtime = finishTimeResult - startTimeResult
+        //     console.log(unpaid_overtime)
+
+        //     return unpaid_overtime
+        // },
+
+
+
+        //  did they check the extra time radios and what to do with that
+        extraTime: function () {
+            if (this.fifteenmin === '15') {
+                let extraTime = 0.25 * 365;
+                console.log("15", extraTime)
+                return extraTime;
+            } else if (this.thirtymin === '30') {
+                let extraTime = 0.5 * 365;
+                console.log("30", extraTime)
+                return extraTime;
+            } else if (this.fortyfivemin === '45') {
+                let extraTime = 0.75 * 365;
+                console.log("45", extraTime)
+                return extraTime;
+            } else if (this.sixtymin === '60') {
+                let extraTime = 1 * 365;
+                console.log("60", extraTime)
+                return extraTime;
+            } else {
+                return;
+            }
+        },
+
+
         submitForm: function () {
-            //show loading animation
-            this.button_text =
-                '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
+            this.calculated = true;
+            // //show loading animation
+            // this.button_text =
+            //     '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
 
-            var formData = {
-                person: {
-                    email_addresses: [{
-                        address: this.email
-                    }],
+            // var formData = {
+            //     person: {
+            //         email_addresses: [{
+            //             address: this.email
+            //         }],
 
-                    custom_fields: {
-                        Industry: this.industry,
-                        'Occupation/Role': this.occupation,
-                        Salary: this.salary,
-                        Retire: this.retire
-                    }
-                },
+            //         custom_fields: {
+            //             Industry: this.industry,
+            //             'Occupation/Role': this.occupation,
+            //             Salary: this.salary,
+            //             Retire: this.retire
+            //         }
+            //     },
 
-                triggers: {
-                    autoresponse: {
-                        enabled: true
-                    }
-                },
+            //     triggers: {
+            //         autoresponse: {
+            //             enabled: true
+            //         }
+            //     },
 
-                add_tags: ['C: Unpaid Overtime', 'A: Calculator']
-            };
+            //     add_tags: ['C: Unpaid Overtime', 'A: Calculator']
+            // };
 
-            axios
-                .post(
-                    'https://actionnetwork.org/api/v2/forms/3b7e6aba-b5b9-4d3f-a29d-f7c65d934441/submissions',
-                    formData, {}
-                )
-                .then(data => {
-                    this.calculated = true;
-                    console.log(data);
-                    this.button_text = 'Submit';
-                });
+            // axios
+            //     .post(
+            //         'https://actionnetwork.org/api/v2/forms/3b7e6aba-b5b9-4d3f-a29d-f7c65d934441/submissions',
+            //         formData, {}
+            //     )
+            //     .then(data => {
+            //         this.calculated = true;
+            //         console.log(data);
+            //         this.button_text = 'Submit';
+            //     });
+
         }
     }
 });

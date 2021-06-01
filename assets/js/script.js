@@ -130,6 +130,8 @@ var app = new Vue({
             }
         },
 
+
+
         // returns unpaid overtime
         total_unpaid_overtime: function (newStart, newFinish, lunchOrNot) {
             newStart();

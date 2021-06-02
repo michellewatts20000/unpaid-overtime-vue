@@ -85,49 +85,36 @@ var app = new Vue({
     },
 
     methods: {
-
-
-        logVariables: function () {
-            console.log(this.fifteenmin)
-            console.log(this.thirtymin)
-            console.log(this.fortyfivemin)
-            console.log(this.sixtymin)
-
-        },
         // turns start time into a decimal, converts it to 24 hour time if it's past 12pm
         startTime: function () {
-            var arr = this.start.split(':');
-            var arr2 = arr[1].split('')
+            arr = this.start.split(':');
+            arr2 = arr[1].split('')
             if (arr2[2] == 'p') {
-                var arr3 = arr2[0] * 10
-                let dec = parseInt((arr3 / 6) * 10, 10);
-                let startTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec) + 12;
-                console.log(startTimeResult)
+                arr3 = arr2[0] * 10
+                dec = parseInt((arr3 / 6) * 10, 10);
+                startTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec) + 12;
                 return startTimeResult
             } else {
-                var arr3 = arr2[0] * 10
-                let dec = parseInt((arr3 / 6) * 10, 10);
-                let startTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
-                console.log(startTimeResult)
+                arr3 = arr2[0] * 10
+                dec = parseInt((arr3 / 6) * 10, 10);
+                startTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
                 return startTimeResult
             }
         },
 
         // turns finish time into a decimal, converts it to 24 hour time if it's past 12pm
         finishTime: function () {
-            var arr = this.finish.split(':');
-            var arr2 = arr[1].split('')
+            arr = this.finish.split(':');
+            arr2 = arr[1].split('')
             if (arr2[2] == 'p') {
-                var arr3 = arr2[0] * 10
-                let dec = parseInt((arr3 / 6) * 10, 10);
-                let finishTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec) + 12;
-                console.log(finishTimeResult)
+                arr3 = arr2[0] * 10
+                dec = parseInt((arr3 / 6) * 10, 10);
+                finishTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec) + 12;
                 return finishTimeResult
             } else {
-                var arr3 = arr2[0] * 10
-                let dec = parseInt((arr3 / 6) * 10, 10);
-                let finishTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
-                console.log(finishTimeResult)
+                arr3 = arr2[0] * 10
+                dec = parseInt((arr3 / 6) * 10, 10);
+                finishTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
                 return finishTimeResult
             }
         },
@@ -135,65 +122,67 @@ var app = new Vue({
         // did they check the lunch break radio and what to do with that
         lunchOrNot: function () {
             if (this.nolunch === 'nolunch') {
-                this.working_hours = 7.6;
-                console.log('working hours no lunch checked', this.working_hours)
-                return this.working_hours;
+                workingHours = 7.6;
+                return workingHours;
             } else {
-                this.working_hours = 8;
-                console.log('working hours lunch checked', this.working_hours)
-                return this.working_hours;
+                workingHours = 8;
+                return workingHours;
             }
         },
 
-
-        // returns total hours of unpaid overtime
-        // total_hours_overtime: function (startTime, finishTime, lunchOrNot) {
-        //     startTime();
-        //     finishTime();
-        //     lunchOrNot();
-
-        //     let unpaid = this.working_hours - (finishTimeResult - startTimeResult)
-        //     console.log(unpaid)
-        //     totalOvertime = unpaid * 230;
-        //     return totalOvertime;
-        // },
-
-        // unpaidOvertime: function (startTime, finishTime, lunchOrNot) {
-
-        //     startTime();
-        //     finishTime();
-        //     lunchOrNot();
-
-        //     var unpaid_overtime = finishTimeResult - startTimeResult
-        //     console.log(unpaid_overtime)
-
-        //     return unpaid_overtime
-        // },
-
-
-
-        //  did they check the extra time radios and what to do with that
+        // did they select any extra time outside of work
         extraTime: function () {
             if (this.fifteenmin === '15') {
-                let extraTime = 0.25 * 365;
-                console.log("15", extraTime)
-                return extraTime;
+                extraTimeRes = 0.25 * 365;
+                return extraTimeRes
             } else if (this.thirtymin === '30') {
-                let extraTime = 0.5 * 365;
-                console.log("30", extraTime)
-                return extraTime;
+                extraTimeRes = 0.5 * 365;
+                return extraTimeRes
             } else if (this.fortyfivemin === '45') {
-                let extraTime = 0.75 * 365;
-                console.log("45", extraTime)
-                return extraTime;
+                extraTimeRes = 0.75 * 365;
+                return extraTimeRes;
             } else if (this.sixtymin === '60') {
-                let extraTime = 1 * 365;
-                console.log("60", extraTime)
-                return extraTime;
+                extraTimeRes = 1 * 365;
+                return extraTimeRes;
             } else {
                 return;
             }
         },
+
+        dailySalary: function () {
+            formattedSalary = this.salary_unformatted.replace(/\D/g, '');
+            dailySalaryRes = (formattedSalary / 260) / 7.6;
+            return dailySalaryRes;
+        },
+
+        overtimeEachYear: function (startTime, finishTime, lunchOrNot, extraTime, dailySalary) {
+            startTime();
+            finishTime();
+            lunchOrNot();
+            extraTime();
+            dailySalary();
+            oneDay = (finishTimeResult - startTimeResult) - workingHours;
+            eachYear = oneDay * 230
+            plusExtra = eachYear + extraTimeRes
+
+
+            overtimeDollars = plusExtra * dailySalaryRes
+            console.log("overtime $$", overtimeDollars.toFixed(2));
+            console.log("one day", oneDay);
+            console.log("each year", eachYear);
+            console.log("plus extra", plusExtra);
+            console.log("startTimeResult", startTimeResult);
+            console.log("finishTimeResult", finishTimeResult);
+            console.log("lunch", workingHours);
+            console.log("extra", extraTimeRes);
+            console.log("unformatted salary", this.salary_unformatted);
+            console.log("formatted salary", formattedSalary);
+            console.log("daily salary res", dailySalaryRes.toFixed(2));
+
+            return '$' + overtimeDollars.toFixed(0) + ' for ' + plusExtra.toFixed(2)
+
+        },
+
 
 
         submitForm: function () {

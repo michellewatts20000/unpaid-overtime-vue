@@ -183,15 +183,18 @@
                                 you would
                                 have been underpaid:
                                 <br>
+                                <!-- {{logVariables(finishTime, startTime, lunchOrNot, extraTime, dailySalary)}} -->
 
-                                {{ finishTime() }} {{ startTime() }} {{ lunchOrNot() }} {{ extraTime() }}
-                                {{ logVariables() }}
-                                <!-- {{ total_hours_overtime(startTime, finishTime, lunchOrNot) }} -->
+                                <span
+                                    class="red">{{overtimeEachYear(startTime, finishTime, lunchOrNot, extraTime, dailySalary)}}</span>
+
+
+
                                 <!-- <span
-                                    class="red">${{ total_unpaid_overtime(newFinish, newStart, lunchOrNot, startTime, finishTime) }}</span> -->
+                                    class="red">${{ total_unpaid_overtime(newFinish, newStart, lunchOrNot, extraTime) }}</span>
 
-                                <!-- for <span
-                                    class="red">{{ total_hours_overtime(startTime, newFinish, newStart, lunchOrNot, startTime, finishTime) }}</span> -->
+                                for <span
+                                    class="red">{{ total_hours_overtime(newFinish, newStart, lunchOrNot, extraTime) }}</span> -->
                                 hours of
                                 overtime
                             </h3>

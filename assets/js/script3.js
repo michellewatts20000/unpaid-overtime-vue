@@ -103,8 +103,6 @@ var app = new Vue({
             }
         },
 
-
-
         newFinish: function () {
             newFinish2 = this.finish.split('');
             newFinish = this.finish.split(':');
@@ -132,13 +130,34 @@ var app = new Vue({
             }
         },
 
-
+        extraTime: function () {
+            if (this.fifteenmin === '15') {
+                extraTimeRes = 0.25 * 365;
+                console.log("15", extraTimeRes)
+                return extraTimeRes
+            } else if (this.thirtymin === '30') {
+                extraTimeRes = 0.5 * 365;
+                console.log("30", extraTimeRes)
+                return extraTimeRes
+            } else if (this.fortyfivemin === '45') {
+                extraTimeRes = 0.75 * 365;
+                console.log("45", extraTimeRes)
+                return extraTimeRes;
+            } else if (this.sixtymin === '60') {
+                extraTimeRes = 1 * 365;
+                console.log("60", extraTimeRes)
+                return extraTimeRes;
+            } else {
+                return;
+            }
+        },
 
         // returns unpaid overtime
-        total_unpaid_overtime: function (newStart, newFinish, lunchOrNot) {
+        total_unpaid_overtime: function (newStart, newFinish, lunchOrNot, extraTime) {
             newStart();
             newFinish();
             lunchOrNot();
+            extraTime();
 
             if (bestStart > bestFinish) {
                 newTimeBegin = (bestStart - bestFinish) / 2;
@@ -157,7 +176,7 @@ var app = new Vue({
                 this.calculated = false;
                 return;
             }
-
+            console.log("extraTime", extraTimeRes);
             this.salary = this.salary_unformatted.replace(/\D/g, '');
             totalOvertime = newTime * 230;
             salaryDay = this.salary / 260;
@@ -167,10 +186,11 @@ var app = new Vue({
         },
 
         // returns total hours of unpaid overtime
-        total_hours_overtime: function (newStart, newFinish, lunchOrNot) {
+        total_hours_overtime: function (newStart, newFinish, lunchOrNot, extraTime) {
             newStart();
             newFinish();
             lunchOrNot();
+            extraTime();
 
             if (bestStart > bestFinish) {
                 newTimeBegin = (bestStart - bestFinish) / 2;
@@ -181,49 +201,50 @@ var app = new Vue({
                 newTime = bestFinish - bestStart - this.working_hours;
                 console.log(newTime);
             }
-
+            console.log("extraTime", extraTimeRes);
             totalOvertime = newTime * 230;
             return totalOvertime;
         },
 
         submitForm: function () {
             //show loading animation
-            this.button_text =
-                '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
+            this.calculated = true;
+            // this.button_text =
+            //     '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
 
-            var formData = {
-                person: {
-                    email_addresses: [{
-                        address: this.email
-                    }],
+            // var formData = {
+            //     person: {
+            //         email_addresses: [{
+            //             address: this.email
+            //         }],
 
-                    custom_fields: {
-                        Industry: this.industry,
-                        'Occupation/Role': this.occupation,
-                        Salary: this.salary,
-                        Retire: this.retire
-                    }
-                },
+            //         custom_fields: {
+            //             Industry: this.industry,
+            //             'Occupation/Role': this.occupation,
+            //             Salary: this.salary,
+            //             Retire: this.retire
+            //         }
+            //     },
 
-                triggers: {
-                    autoresponse: {
-                        enabled: true
-                    }
-                },
+            //     triggers: {
+            //         autoresponse: {
+            //             enabled: true
+            //         }
+            //     },
 
-                add_tags: ['C: Unpaid Overtime', 'A: Calculator']
-            };
+            //     add_tags: ['C: Unpaid Overtime', 'A: Calculator']
+            // };
 
-            axios
-                .post(
-                    'https://actionnetwork.org/api/v2/forms/3b7e6aba-b5b9-4d3f-a29d-f7c65d934441/submissions',
-                    formData, {}
-                )
-                .then(data => {
-                    this.calculated = true;
-                    console.log(data);
-                    this.button_text = 'Submit';
-                });
+            // axios
+            //     .post(
+            //         'https://actionnetwork.org/api/v2/forms/3b7e6aba-b5b9-4d3f-a29d-f7c65d934441/submissions',
+            //         formData, {}
+            //     )
+            //     .then(data => {
+            //         this.calculated = true;
+            //         console.log(data);
+            //         this.button_text = 'Submit';
+            //     });
         }
     }
 });

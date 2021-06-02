@@ -145,7 +145,8 @@ var app = new Vue({
                 extraTimeRes = 1 * 365;
                 return extraTimeRes;
             } else {
-                return;
+                extraTimeRes = 0;
+                return extraTimeRes;
             }
         },
 

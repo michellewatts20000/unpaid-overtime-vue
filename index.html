@@ -43,7 +43,7 @@
 
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="text-white">Do you work part-time or full-time? <span>*</span>&nbsp;</label>
+                            <label class="text-white">Do you work part-time or full-time? <span>*</span></label>
                             <br>
 
                             <div class="toggle">
@@ -143,7 +143,26 @@
                             <label class="text-white">Email address <span>*</span>&nbsp;</label>
                             <input type="email" placeholder="yourname@email.com" class="form-control mb-3"
                                 name="email_address" id="email" v-model="email" required />
+                            <div class="row">
+                                <div class="col">
+                                    <label class="text-white">actual weekly hours<span>*</span></label>
+                                    <input type="text" placeholder="20" class="form-control mb-3" name="actual hours"
+                                        id="" v-model="actualHours" />
+                                </div>
 
+                                <div class="col">
+                                    <label class="text-white">paid weekly hours<span>*</span></label>
+                                    <input type="text" placeholder="15" class="form-control mb-3" name="actual hours"
+                                        id="" v-model="actualHours" />
+                                </div>
+
+                                <div class="col">
+                                    <label class="text-white"># days worked per week<span>*</span></label>
+                                    <input type="text" placeholder="3" class="form-control mb-3" name="actual hours"
+                                        id="" v-model="actualHours" />
+                                </div>
+
+                            </div>
 
                             <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
                             <cleave :options="dollar_options" class="form-control mb-3" v-model="salary_unformatted"
@@ -165,6 +184,26 @@
                                 <label class="text-white form-check-label" for="inlineRadio2">No</label>
                             </div>
 
+                            <label class="text-white mt-3">How many minutes do you spend each day outside of
+                                work messaging, emailing and answering
+                                phone
+                                calls?</label>
+
+                            <div class="toggle2">
+                                <input v-model="fifteenmin" type="radio" name="extraTime" id="15" value="15" />
+                                <label for="15">15</label>
+
+                                <input v-model="thirtymin" type="radio" name="extraTime" id="30" value="30" />
+                                <label for="30">30</label>
+
+                                <input v-model="fortyfivemin" type="radio" name="extraTime" id="45" value="45" />
+                                <label for="45">45</label>
+
+                                <input v-model="sixtymin" type="radio" name="extraTime" id="60" value="60" />
+                                <label for="60">60+</label>
+                            </div>
+
+
                             <br>
 
                             <button type="submit" id="custom_submit" value="Submit" class="btn btn-danger mt-3"
@@ -179,24 +218,12 @@
                     <div v-if="calculated == true">
                         <div class="text-center col-md-12">
                             <h3 class="text-center text-white mt-3">If you did this much overtime, every day, for one
-                                year
-                                you would
-                                have been underpaid:
+                                year you would have been underpaid:
                                 <br>
-                                <!-- {{logVariables(finishTime, startTime, lunchOrNot, extraTime, dailySalary)}} -->
-
                                 <span
                                     class="red">{{overtimeEachYear(startTime, finishTime, lunchOrNot, extraTime, dailySalary)}}</span>
 
-
-
-                                <!-- <span
-                                    class="red">${{ total_unpaid_overtime(newFinish, newStart, lunchOrNot, extraTime) }}</span>
-
-                                for <span
-                                    class="red">{{ total_hours_overtime(newFinish, newStart, lunchOrNot, extraTime) }}</span> -->
-                                hours of
-                                overtime
+                                hours of overtime
                             </h3>
 
 
@@ -204,7 +231,7 @@
                     </div>
 
                     <div id="footer" class="text-center col-md-12">
-                        <h5 class="text-center mt-5">*Some disclaimer about this being an estimate based on your inputs
+                        <h5 class="text-center mt-5">* Some disclaimer about this being an estimate based on your inputs
                         </h5>
                     </div>
 

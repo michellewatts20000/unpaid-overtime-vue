@@ -3,14 +3,11 @@ Vue.use(VueCleave);
 var app = new Vue({
     // the element to apply the code to
     el: '#app',
-
     //define the variables
     data: {
         email: '',
-        occupation: '',
         industry: '',
         salary_unformatted: '',
-        years: '',
         start: '9:00am',
         finish: '5:00pm',
         fifteenmin: '',
@@ -122,7 +119,7 @@ var app = new Vue({
         // did they check the lunch break radio and what to do with that
         lunchOrNot: function () {
             if (this.nolunch === 'nolunch') {
-                workingHours = 7.6;
+                workingHours = 7.1;
                 return workingHours;
             } else {
                 workingHours = 8;
@@ -200,7 +197,6 @@ var app = new Vue({
 
             //         custom_fields: {
             //             Industry: this.industry,
-            //             'Occupation/Role': this.occupation,
             //             Salary: this.salary,
             //             Retire: this.retire
             //         }

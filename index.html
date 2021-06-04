@@ -57,7 +57,7 @@
 
                         </div>
                     </div>
-                    <div v-if="fulltime">
+                    <div id="app" v-if="fulltime">
 
                         <form v-on:submit.prevent="submitForm">
                             <label class="text-white">Email address <span>*</span>&nbsp;</label>
@@ -136,33 +136,47 @@
                             <div id="success"></div>
 
                         </form>
+                        <div v-if="calculated == true">
+                            <div class="text-center col-md-12">
+                                <h3 class="text-center text-white mt-3">If you did this much overtime, every day, for
+                                    one
+                                    year you would have been underpaid:
+                                    <br>
+                                    <span
+                                        class="red">{{overtimeEachYear(startTime, finishTime, lunchOrNot, extraTime, dailySalary)}}</span>
+
+                                    hours of overtime
+                                </h3>
+
+
+                            </div>
+                        </div>
                     </div>
 
-                    <div v-if="parttime">
+                    <div id="app2" v-if="parttime">
                         <form v-on:submit.prevent="submitForm">
                             <label class="text-white">Email address <span>*</span>&nbsp;</label>
                             <input type="email" placeholder="yourname@email.com" class="form-control mb-3"
-                                name="email_address" id="email" v-model="email" required />
+                                name="email_address" id="email" v-model="email" />
                             <div class="row">
+
+                                <div class="col">
+                                    <label class="text-white">paid weekly hours<span>*</span></label>
+                                    <input type="text" placeholder="15" class="form-control mb-3" name="actual hours"
+                                        id="" v-model="paidHours" />
+                                </div>
                                 <div class="col">
                                     <label class="text-white">actual weekly hours<span>*</span></label>
                                     <input type="text" placeholder="20" class="form-control mb-3" name="actual hours"
                                         id="" v-model="actualHours" />
                                 </div>
 
-                                <div class="col">
-                                    <label class="text-white">paid weekly hours<span>*</span></label>
-                                    <input type="text" placeholder="15" class="form-control mb-3" name="actual hours"
-                                        id="" v-model="actualHours" />
-                                </div>
-
-                                <div class="col">
-                                    <label class="text-white"># days worked per week<span>*</span></label>
-                                    <input type="text" placeholder="3" class="form-control mb-3" name="actual hours"
-                                        id="" v-model="actualHours" />
-                                </div>
 
                             </div>
+
+                            <label class="text-white"># days worked per week<span>*</span></label>
+                            <input type="text" placeholder="3" class="form-control mb-3" name="actual hours" id=""
+                                v-model="daysWorked" />
 
                             <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
                             <cleave :options="dollar_options" class="form-control mb-3" v-model="salary_unformatted"
@@ -214,24 +228,19 @@
                             <div id="success"></div>
 
                         </form>
-                    </div>
-                    <div v-if="calculated == true">
-                        <div class="text-center col-md-12">
-                            <h3 class="text-center text-white mt-3">If you did this much overtime, every day, for one
-                                year you would have been underpaid:
-                                <br>
-                                <span
-                                    class="red">{{overtimeEachYear(startTime, finishTime, lunchOrNot, extraTime, dailySalary)}}</span>
 
-                                hours of overtime
-                            </h3>
+                        <div v-if="calculated == true">
+                            <div class="text-center col-md-12">
+                                <h3 class="text-center text-white mt-3">
+                                    <span class="red"> {{ extraTime() }}</span></h3>
 
-
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                     <div id="footer" class="text-center col-md-12">
-                        <h5 class="text-center mt-5">* Some disclaimer about this being an estimate based on your inputs
+                        <h5 class="text-center mt-5">* Some disclaimer about this being an estimate based on your
+                            inputs
                         </h5>
                     </div>
 
@@ -247,6 +256,7 @@
 
 
     <script src="./assets/js/script2.js"></script>
+    <script src="./assets/js/script3.js"></script>
 
 
 

@@ -2,28 +2,26 @@ Vue.use(VueCleave);
 
 var app = new Vue({
     // the element to apply the code to
-    el: '#app',
-
+    el: '#app2',
     //define the variables
     data: {
         email: '',
-        occupation: '',
         industry: '',
         salary_unformatted: '',
-        years: '',
-        start: '9:00am',
-        finish: '5:00pm',
-        fifteenmin: '15',
-        thirtymin: '30',
-        fortyfivemin: '45',
-        sixtymin: '60',
+        daysWorked: '',
+        paidHours: '',
+        actualHours: '',
+        fifteenmin: '',
+        thirtymin: '',
+        fortyfivemin: '',
+        sixtymin: '',
         yeslunch: '',
         nolunch: '',
         fulltime: false,
         parttime: false,
         working_days: 230,
         total_days: 260,
-        working_hours: 8,
+        working_hours: 7.6,
         button_text: 'Submit',
         calculated: false,
         unpaid_overtime: '',
@@ -85,130 +83,110 @@ var app = new Vue({
     },
 
     methods: {
-        // turns string into a number, converts it to 24 hour time if it's past 12pm
-        newStart: function () {
-            newStart2 = this.start.split('');
-            newStart = this.start.split(':');
-            console.log("newStart", newStart);
-
-            if (newStart2[5] == 'p' || newStart2[4] == 'p') {
-                var integer = parseInt(newStart[0], 10);
-                bestStart = integer + 12;
-                console.log("bestStart", bestStart);
+        // turns start time into a decimal, converts it to 24 hour time if it's past 12pm
+        startTime: function () {
+            arr = this.start.split(':');
+            arr2 = arr[1].split('')
+            if (arr2[2] == 'p') {
+                arr3 = arr2[0] * 10
+                dec = parseInt((arr3 / 6) * 10, 10);
+                startTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec) + 12;
+                return startTimeResult
             } else {
-                var integer = parseInt(newStart[0], 10);
-                bestStart = integer;
-                console.log("bestStart", bestStart);
-                return bestStart;
+                arr3 = arr2[0] * 10
+                dec = parseInt((arr3 / 6) * 10, 10);
+                startTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
+                return startTimeResult
             }
         },
 
-        newFinish: function () {
-            newFinish2 = this.finish.split('');
-            newFinish = this.finish.split(':');
-            console.log("newFinish", newFinish);
-
-            if (newFinish2[5] == 'p' || newFinish2[4] == 'p') {
-                var integer2 = parseInt(newFinish[0], 10);
-                bestFinish = integer2 + 12;
-                console.log("bestFinish", bestFinish);
+        // turns finish time into a decimal, converts it to 24 hour time if it's past 12pm
+        finishTime: function () {
+            arr = this.finish.split(':');
+            arr2 = arr[1].split('')
+            if (arr2[2] == 'p') {
+                arr3 = arr2[0] * 10
+                dec = parseInt((arr3 / 6) * 10, 10);
+                finishTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec) + 12;
+                return finishTimeResult
             } else {
-                var integer2 = parseInt(newFinish[0], 10);
-                bestFinish = integer2;
-                console.log("bestFinish", bestFinish);
-                return bestFinish;
+                arr3 = arr2[0] * 10
+                dec = parseInt((arr3 / 6) * 10, 10);
+                finishTimeResult = parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
+                return finishTimeResult
             }
         },
 
+        // did they check the lunch break radio and what to do with that
         lunchOrNot: function () {
             if (this.nolunch === 'nolunch') {
-                this.working_hours = 7.5;
-                return this.working_hours;
+                workingHours = 7.1;
+                return workingHours;
             } else {
-                this.working_hours = 8;
-                return this.working_hours;
+                workingHours = 8;
+                return workingHours;
             }
         },
 
+        // did they select any extra time outside of work
         extraTime: function () {
             if (this.fifteenmin === '15') {
                 extraTimeRes = 0.25 * 365;
-                console.log("15", extraTimeRes)
                 return extraTimeRes
             } else if (this.thirtymin === '30') {
                 extraTimeRes = 0.5 * 365;
-                console.log("30", extraTimeRes)
                 return extraTimeRes
             } else if (this.fortyfivemin === '45') {
                 extraTimeRes = 0.75 * 365;
-                console.log("45", extraTimeRes)
                 return extraTimeRes;
             } else if (this.sixtymin === '60') {
                 extraTimeRes = 1 * 365;
-                console.log("60", extraTimeRes)
                 return extraTimeRes;
             } else {
-                return;
+                extraTimeRes = 0;
+                return extraTimeRes;
             }
         },
 
-        // returns unpaid overtime
-        total_unpaid_overtime: function (newStart, newFinish, lunchOrNot, extraTime) {
-            newStart();
-            newFinish();
+        dailySalary: function () {
+            formattedSalary = this.salary_unformatted.replace(/\D/g, '');
+            dailySalaryRes = (formattedSalary / 260) / 7.6;
+            return dailySalaryRes;
+        },
+
+        overtimeEachYear: function (startTime, finishTime, lunchOrNot, extraTime, dailySalary) {
+            startTime();
+            finishTime();
             lunchOrNot();
             extraTime();
+            dailySalary();
+            oneDay = (finishTimeResult - startTimeResult) - workingHours;
+            eachYear = oneDay * 230
+            plusExtra = eachYear + extraTimeRes
 
-            if (bestStart > bestFinish) {
-                newTimeBegin = (bestStart - bestFinish) / 2;
-                newTime = newTimeBegin - this.working_hours;
-                console.log(bestStart, bestFinish, this.working_hours);
-                console.log(newTime);
-            } else {
-                newTime = bestFinish - bestStart - this.working_hours;
-                console.log(bestFinish, bestStart, this.working_hours);
-                console.log(newTime);
-            }
 
-            if (newTime < 0) {
-                console.log(newTime);
-                alert('this calculator only works with a minimum 7.5 hour day');
-                this.calculated = false;
-                return;
-            }
-            console.log("extraTime", extraTimeRes);
-            this.salary = this.salary_unformatted.replace(/\D/g, '');
-            totalOvertime = newTime * 230;
-            salaryDay = this.salary / 260;
-            salaryHour = salaryDay / 8.0;
-            result = totalOvertime * salaryHour;
-            return Math.ceil(result);
+            overtimeDollars = plusExtra * dailySalaryRes
+            console.log("overtime $$", overtimeDollars.toFixed(2));
+            console.log("one day", oneDay);
+            console.log("each year", eachYear);
+            console.log("plus extra", plusExtra);
+            console.log("startTimeResult", startTimeResult);
+            console.log("finishTimeResult", finishTimeResult);
+            console.log("lunch", workingHours);
+            console.log("extra", extraTimeRes);
+            console.log("unformatted salary", this.salary_unformatted);
+            console.log("formatted salary", formattedSalary);
+            console.log("daily salary res", dailySalaryRes.toFixed(2));
+
+            return '$' + overtimeDollars.toFixed(0) + ' for ' + plusExtra.toFixed(2)
+
         },
 
-        // returns total hours of unpaid overtime
-        total_hours_overtime: function (newStart, newFinish, lunchOrNot, extraTime) {
-            newStart();
-            newFinish();
-            lunchOrNot();
-            extraTime();
 
-            if (bestStart > bestFinish) {
-                newTimeBegin = (bestStart - bestFinish) / 2;
-                newTime = newTimeBegin - this.working_hours;
-                console.log(bestStart, bestFinish, this.working_hours);
-                console.log(newTime);
-            } else {
-                newTime = bestFinish - bestStart - this.working_hours;
-                console.log(newTime);
-            }
-            console.log("extraTime", extraTimeRes);
-            totalOvertime = newTime * 230;
-            return totalOvertime;
-        },
 
         submitForm: function () {
-            //show loading animation
             this.calculated = true;
+            // //show loading animation
             // this.button_text =
             //     '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
 
@@ -220,7 +198,6 @@ var app = new Vue({
 
             //         custom_fields: {
             //             Industry: this.industry,
-            //             'Occupation/Role': this.occupation,
             //             Salary: this.salary,
             //             Retire: this.retire
             //         }
@@ -245,6 +222,7 @@ var app = new Vue({
             //         console.log(data);
             //         this.button_text = 'Submit';
             //     });
+
         }
     }
 });

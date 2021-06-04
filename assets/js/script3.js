@@ -129,7 +129,7 @@ var app = new Vue({
         },
 
         // did they select any extra time outside of work
-        extraTime: function () {
+        extraTime2: function () {
             if (this.fifteenmin === '15') {
                 extraTimeRes = 0.25 * 365;
                 return extraTimeRes

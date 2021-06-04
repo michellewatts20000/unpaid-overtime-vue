@@ -7,6 +7,9 @@ var app = new Vue({
     data: {
         email: '',
         industry: '',
+        daysWorked: '',
+        paidHours: '',
+        actualHours: '',
         salary_unformatted: '',
         start: '9:00am',
         finish: '5:00pm',
@@ -147,11 +150,21 @@ var app = new Vue({
             }
         },
 
+
+
         dailySalary: function () {
             formattedSalary = this.salary_unformatted.replace(/\D/g, '');
             dailySalaryRes = (formattedSalary / 260) / 7.6;
             return dailySalaryRes;
         },
+
+        dailySalaryPart: function () {
+            formattedSalary = this.salary_unformatted.replace(/\D/g, '');
+            dailySalaryRes = ((formattedSalary / 52) / this.paidHours) * 230;
+            return dailySalaryRes;
+        },
+
+
 
         overtimeEachYear: function (startTime, finishTime, lunchOrNot, extraTime, dailySalary) {
             startTime();
@@ -181,7 +194,22 @@ var app = new Vue({
 
         },
 
+        partTime: function (extraTime, lunchOrNot, dailySalaryPart) {
+            extraTime();
+            lunchOrNot();
+            dailySalaryPart();
+            weeklyHours = (this.actualHours - this.paidHours) * 46;
+            weeklyExtra = weeklyHours + extraTimeRes;
+            // unpaidAmount = (dailySalaryRes / 52) / this.paidHours;
 
+
+            console.log("salary", dailySalaryRes.toFixed(2));
+            console.log("lunch", workingHours);
+            console.log("extra", extraTimeRes);
+            console.log(this.paidHours)
+            console.log(this.actualHours)
+            return "$ " + dailySalaryRes.toFixed(2) + " for " + weeklyExtra.toFixed(0)
+        },
 
         submitForm: function () {
             this.calculated = true;

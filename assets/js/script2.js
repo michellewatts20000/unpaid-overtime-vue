@@ -199,43 +199,43 @@ var app = new Vue({
         },
 
         submitForm: function () {
-            this.calculated = true;
+            // this.calculated = true;
             // //show loading animation
-            // this.button_text =
-            //     '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
+            this.button_text =
+                '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
 
-            // var formData = {
-            //     person: {
-            //         email_addresses: [{
-            //             address: this.email
-            //         }],
+            var formData = {
+                person: {
+                    email_addresses: [{
+                        address: this.email
+                    }],
 
-            //         custom_fields: {
-            //             Industry: this.industry,
-            //             Salary: this.salary,
-            //             Retire: this.retire
-            //         }
-            //     },
+                    custom_fields: {
+                        Industry: this.industry,
+                        Salary: this.salary,
+                        Retire: this.retire
+                    }
+                },
 
-            //     triggers: {
-            //         autoresponse: {
-            //             enabled: true
-            //         }
-            //     },
+                triggers: {
+                    autoresponse: {
+                        enabled: true
+                    }
+                },
 
-            //     add_tags: ['C: Unpaid Overtime', 'A: Calculator']
-            // };
+                add_tags: ['C: Unpaid Overtime', 'A: Calculator']
+            };
 
-            // axios
-            //     .post(
-            //         'https://actionnetwork.org/api/v2/forms/3b7e6aba-b5b9-4d3f-a29d-f7c65d934441/submissions',
-            //         formData, {}
-            //     )
-            //     .then(data => {
-            //         this.calculated = true;
-            //         console.log(data);
-            //         this.button_text = 'Submit';
-            //     });
+            axios
+                .post(
+                    'https://actionnetwork.org/api/v2/forms/3b7e6aba-b5b9-4d3f-a29d-f7c65d934441/submissions',
+                    formData, {}
+                )
+                .then(data => {
+                    this.calculated = true;
+                    console.log(data);
+                    this.button_text = 'Submit';
+                });
 
         }
     }

@@ -150,21 +150,18 @@ var app = new Vue({
             }
         },
 
-
-
         dailySalary: function () {
             formattedSalary = this.salary_unformatted.replace(/\D/g, '');
             dailySalaryRes = (formattedSalary / 260) / 7.6;
             return dailySalaryRes;
         },
 
-        dailySalaryPart: function () {
+        weeklySalaryPart: function () {
             formattedSalary = this.salary_unformatted.replace(/\D/g, '');
-            dailySalaryRes = ((formattedSalary / 52) / this.paidHours) * 230;
-            return dailySalaryRes;
+            hourlySalaryRate = (formattedSalary / 52) / this.paidHours;
+            console.log("formattedSalary", formattedSalary);
+            return hourlySalaryRate;
         },
-
-
 
         overtimeEachYear: function (startTime, finishTime, lunchOrNot, extraTime, dailySalary) {
             startTime();
@@ -175,8 +172,6 @@ var app = new Vue({
             oneDay = (finishTimeResult - startTimeResult) - workingHours;
             eachYear = oneDay * 230
             plusExtra = eachYear + extraTimeRes
-
-
             overtimeDollars = plusExtra * dailySalaryRes
             console.log("overtime $$", overtimeDollars.toFixed(2));
             console.log("one day", oneDay);
@@ -188,27 +183,19 @@ var app = new Vue({
             console.log("extra", extraTimeRes);
             console.log("unformatted salary", this.salary_unformatted);
             console.log("formatted salary", formattedSalary);
-            console.log("daily salary res", dailySalaryRes.toFixed(2));
-
             return '$' + overtimeDollars.toFixed(0) + ' for ' + plusExtra.toFixed(2)
-
         },
 
-        partTime: function (extraTime, lunchOrNot, dailySalaryPart) {
+        partTime: function (extraTime, lunchOrNot, weeklySalaryPart) {
             extraTime();
             lunchOrNot();
-            dailySalaryPart();
-            weeklyHours = (this.actualHours - this.paidHours) * 46;
-            weeklyExtra = weeklyHours + extraTimeRes;
-            // unpaidAmount = (dailySalaryRes / 52) / this.paidHours;
-
-
-            console.log("salary", dailySalaryRes.toFixed(2));
-            console.log("lunch", workingHours);
+            weeklySalaryPart();
+            totalHoursPerYearUO = ((this.actualHours - this.paidHours) * 46) + extraTimeRes;
+            totalSalaryUnpaid = hourlySalaryRate * totalHoursPerYearUO
             console.log("extra", extraTimeRes);
-            console.log(this.paidHours)
             console.log(this.actualHours)
-            return "$ " + dailySalaryRes.toFixed(2) + " for " + weeklyExtra.toFixed(0)
+            console.log(this.paidHours)
+            return "$" + totalSalaryUnpaid.toFixed(2) + " for " + totalHoursPerYearUO.toFixed(0)
         },
 
         submitForm: function () {

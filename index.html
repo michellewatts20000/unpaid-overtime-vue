@@ -174,29 +174,12 @@
 
                             </div>
 
-                            <!-- <label class="text-white"># days worked per week<span>*</span></label>
-                            <input type="text" placeholder="3" class="form-control mb-3" name="actual hours" id=""
-                                v-model="daysWorked" /> -->
 
                             <label class="text-white mt-3">What is your gross salary? <span>*</span>&nbsp;</label>
                             <cleave :options="dollar_options" class="form-control mb-3" v-model="salary_unformatted"
                                 required></cleave>
 
-                            <!-- 
-                            <label class="text-white">Do you usually take a lunch break?
-                                <span>*</span>&nbsp;</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <input v-model="yeslunch" class="form-check-input" type="radio"
-                                    name="inlineRadioOptions" id="inlineRadio1" value="yeslunch">
-                                <label class="text-white form-check-label" checked="checked"
-                                    for="inlineRadio1">Yes</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input v-model="nolunch" class="form-check-input" type="radio" name="inlineRadioOptions"
-                                    id="inlineRadio2" value="nolunch">
-                                <label class="text-white form-check-label" for="inlineRadio2">No</label>
-                            </div> -->
+
 
                             <label class="text-white mt-3">How many minutes do you spend each day outside of
                                 work messaging, emailing and answering
@@ -231,9 +214,18 @@
 
                         <div v-if="calculated == true">
                             <div class="text-center col-md-12">
-                                <h3 class="text-center text-white mt-3">
-                                    <span class="red"> {{ partTime(extraTime, lunchOrNot, weeklySalaryPart) }}</span>
+
+
+                                <h3 class="text-center text-white mt-3">If you did this much overtime, every day, for
+                                    one
+                                    year you would have been underpaid:
+                                    <br>
+                                    <span class="red">{{ partTime(extraTime, lunchOrNot, weeklySalaryPart) }}</span>
+
+                                    hours of overtime
                                 </h3>
+
+
 
                             </div>
                         </div>

@@ -194,7 +194,7 @@ var app = new Vue({
             if (finishTimeResult < startTimeResult) {
                 oneDay = ((finishTimeResult - startTimeResult) + 24) - workingHours;
                 if (oneDay < 0) {
-                    return alert("please enter full time hours")
+                    return alert("please enter full time hours"), this.calculated = false;
                 } else
                     console.log("first", oneDay)
                 eachYear = oneDay * 230

@@ -130,6 +130,27 @@ var app = new Vue({
             }
         },
 
+        // shiftConsider: function (startTime, finishTime, lunchOrNot) {
+
+        //     startTime();
+        //     finishTime();
+        //     lunchOrNot();
+
+        //     console.log("finish", finishTimeResult, "start", startTimeResult)
+
+        //     if (finishTimeResult < startTimeResult) {
+        //         oneDay = ((finishTimeResult - startTimeResult) + 24) - workingHours;
+        //         console.log("first", oneDay)
+        //         return oneDay
+        //     } else {
+        //         oneDay = (finishTimeResult - startTimeResult) - workingHours;
+        //         console.log("second", oneDay)
+        //         return oneDay
+        //     }
+
+        // },
+
+
         // did they select any extra time outside of work
         extraTime: function () {
             if (this.fifteenmin === '15') {
@@ -163,27 +184,60 @@ var app = new Vue({
             return hourlySalaryRate;
         },
 
-        overtimeEachYear: function (startTime, finishTime, lunchOrNot, extraTime, dailySalary) {
+        overtimeEachYear: function (startTime, finishTime, lunchOrNot, extraTime, dailySalary, shiftConsider) {
             startTime();
             finishTime();
             lunchOrNot();
             extraTime();
             dailySalary();
-            oneDay = (finishTimeResult - startTimeResult) - workingHours;
-            eachYear = oneDay * 230
-            plusExtra = eachYear + extraTimeRes
-            overtimeDollars = plusExtra * dailySalaryRes
-            console.log("overtime $$", overtimeDollars.toFixed(2));
-            console.log("one day", oneDay);
-            console.log("each year", eachYear);
-            console.log("plus extra", plusExtra);
-            console.log("startTimeResult", startTimeResult);
-            console.log("finishTimeResult", finishTimeResult);
-            console.log("lunch", workingHours);
-            console.log("extra", extraTimeRes);
-            console.log("unformatted salary", this.salary_unformatted);
-            console.log("formatted salary", formattedSalary);
-            return '$' + overtimeDollars.toFixed(0) + ' for ' + plusExtra.toFixed(2)
+
+            if (finishTimeResult < startTimeResult) {
+                oneDay = ((finishTimeResult - startTimeResult) + 24) - workingHours;
+                if (oneDay < 0) {
+                    return alert("please enter full time hours")
+                } else
+                    console.log("first", oneDay)
+                eachYear = oneDay * 230
+                plusExtra = eachYear + extraTimeRes
+                overtimeDollars = plusExtra * dailySalaryRes
+                console.log("overtime $$", overtimeDollars.toFixed(2));
+                console.log("one day", oneDay);
+                console.log("each year", eachYear);
+                console.log("plus extra", plusExtra);
+                console.log("startTimeResult", startTimeResult);
+                console.log("finishTimeResult", finishTimeResult);
+                console.log("lunch", workingHours);
+                console.log("extra", extraTimeRes);
+                console.log("unformatted salary", this.salary_unformatted);
+                console.log("formatted salary", formattedSalary);
+                return '$' + overtimeDollars.toFixed(0) + ' for ' + plusExtra.toFixed(2)
+
+            } else {
+                oneDay = (finishTimeResult - startTimeResult) - workingHours;
+                if (oneDay < 0) {
+                    return alert("please enter full time hours")
+                } else
+
+                    console.log("second", oneDay)
+                eachYear = oneDay * 230
+                plusExtra = eachYear + extraTimeRes
+                overtimeDollars = plusExtra * dailySalaryRes
+                console.log("overtime $$", overtimeDollars.toFixed(2));
+                console.log("one day", oneDay);
+                console.log("each year", eachYear);
+                console.log("plus extra", plusExtra);
+                console.log("startTimeResult", startTimeResult);
+                console.log("finishTimeResult", finishTimeResult);
+                console.log("lunch", workingHours);
+                console.log("extra", extraTimeRes);
+                console.log("unformatted salary", this.salary_unformatted);
+                console.log("formatted salary", formattedSalary);
+                return '$' + overtimeDollars.toFixed(0) + ' for ' + plusExtra.toFixed(2)
+
+            }
+
+            // oneDay = (finishTimeResult - startTimeResult) - workingHours;
+
         },
 
         partTime: function (extraTime, lunchOrNot, weeklySalaryPart) {
@@ -199,43 +253,43 @@ var app = new Vue({
         },
 
         submitForm: function () {
-            // this.calculated = true;
+            this.calculated = true;
             // //show loading animation
-            this.button_text =
-                '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
+            //     this.button_text =
+            //         '<i style="color:white; font-size: 1.1em;" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>';
 
-            var formData = {
-                person: {
-                    email_addresses: [{
-                        address: this.email
-                    }],
+            //     var formData = {
+            //         person: {
+            //             email_addresses: [{
+            //                 address: this.email
+            //             }],
 
-                    custom_fields: {
-                        Industry: this.industry,
-                        Salary: this.salary,
-                        Retire: this.retire
-                    }
-                },
+            //             custom_fields: {
+            //                 Industry: this.industry,
+            //                 Salary: this.salary,
+            //                 Retire: this.retire
+            //             }
+            //         },
 
-                triggers: {
-                    autoresponse: {
-                        enabled: true
-                    }
-                },
+            //         triggers: {
+            //             autoresponse: {
+            //                 enabled: true
+            //             }
+            //         },
 
-                add_tags: ['C: Unpaid Overtime', 'A: Calculator']
-            };
+            //         add_tags: ['C: Unpaid Overtime', 'A: Calculator']
+            //     };
 
-            axios
-                .post(
-                    'https://actionnetwork.org/api/v2/forms/3b7e6aba-b5b9-4d3f-a29d-f7c65d934441/submissions',
-                    formData, {}
-                )
-                .then(data => {
-                    this.calculated = true;
-                    console.log(data);
-                    this.button_text = 'Submit';
-                });
+            //     axios
+            //         .post(
+            //             'https://actionnetwork.org/api/v2/forms/3b7e6aba-b5b9-4d3f-a29d-f7c65d934441/submissions',
+            //             formData, {}
+            //         )
+            //         .then(data => {
+            //             this.calculated = true;
+            //             console.log(data);
+            //             this.button_text = 'Submit';
+            //         });
 
         }
     }

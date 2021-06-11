@@ -215,7 +215,8 @@ var app = new Vue({
             } else {
                 oneDay = (finishTimeResult - startTimeResult) - workingHours;
                 if (oneDay < 0) {
-                    return alert("please enter full time hours")
+                    return alert("please enter full time hours"), this.calculated = false;
+
                 } else
 
                     console.log("second", oneDay)
